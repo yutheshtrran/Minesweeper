@@ -49,7 +49,24 @@ class Minesweeper:
                 mines_placed += 1
 
 
-    def reveal_location():
+    def reveal_location(self, row, col):
+        if self.mines[row][col]:
+            print("Game Over! You hit a mine.")
+            self.field[row][col] = '\033[91m' + 'M' + '\033[0m'  
+            self.display_field(reveal_all=True)  
+            exit(0)
+
+        if self.field[row][col] == 'c':
+            adjacent_mines = self.count_adjacent_mines(row, col)
+            if adjacent_mines == 0:
+                self.field[row][col] = '.'
+                for i in range(-1, 2):
+                    for j in range(-1, 2):
+                        new_row, new_col = row + i, col + j
+                        if 0 <= new_row < self.grid_size and 0 <= new_col < self.grid_size:
+                            self.reveal_location(new_row, new_col)
+            else:
+                self.field[row][col] = str(adjacent_mines)
 
 
     def place_flag(self, row, col):
