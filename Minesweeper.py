@@ -29,8 +29,15 @@ class Minesweeper:
             print()
        
 
-    def print_colored_number():
-
+    def print_colored_number(self, number):
+        colors = {
+            1: '\033[33m',  # Orange for 1
+            2: '\033[95m',  # Pink for 2
+            3: '\033[97m',  # White for 3
+            4: '\033[94m',  # Blue for 4
+            5: '\033[35m',  # Magenta for 5
+        }
+        print(colors.get(number, '') + str(number) + '\033[0m', end=" ")
 
     def place_mines(self):
         mines_placed = 0
