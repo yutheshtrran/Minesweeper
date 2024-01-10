@@ -111,6 +111,21 @@ class Minesweeper:
             if not (0 <= row < self.grid_size and 0 <= col < self.grid_size):
                 print("Invalid move. Please enter a valid move.")
                 continue
+
+        action = move[2]
+
+            if action == 'F':
+                self.place_flag(row, col)
+            elif action == 'R':
+                self.reveal_location(row, col)
+            else:
+                print("Invalid move. Please enter a valid move.")
+                continue
+
+            if self.check_win():
+                print("Congratulations! You won!")
+                self.display_field(reveal_all=True)  # Reveal all mines
+                break
         
               
 
