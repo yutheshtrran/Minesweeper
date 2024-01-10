@@ -52,11 +52,19 @@ class Minesweeper:
     def reveal_location():
 
 
-    def place_flag():
+    def place_flag(self, row, col):
+        if self.field[row][col] == 'c':
+            self.field[row][col] = 'F'
+            self.flags_remaining -= 1
+        else:
+            print("Invalid move. You can only place a flag on a covered location.")
 
-
-    def check_win():
-
+    def check_win(self):
+        for i in range(self.grid_size):
+            for j in range(self.grid_size):
+                if self.mines[i][j] and self.field[i][j] != 'F':
+                    return False
+        return True
 
     def count_adjacent_mines():
 
