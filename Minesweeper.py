@@ -32,7 +32,14 @@ class Minesweeper:
     def print_colored_number():
 
 
-    def place_mines():
+    def place_mines(self):
+        mines_placed = 0
+        while mines_placed < self.num_mines:
+            row = random.randint(0, self.grid_size - 1)
+            col = random.randint(0, self.grid_size - 1)
+            if not self.mines[row][col]:
+                self.mines[row][col] = True
+                mines_placed += 1
 
 
     def reveal_location():
