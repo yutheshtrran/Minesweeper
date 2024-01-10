@@ -1,4 +1,10 @@
 #Minesweeper
+
+# Group Members
+# 21/ENG/009 - A.Harishan
+# 21/ENG/131 - S.Yutheshtrran
+# 21/ENG/132 - S.Geerthiga
+
 import random
 
 class Minesweeper:
