@@ -1,5 +1,4 @@
-# Minesweeper
-
+#Minesweeper
 import random
 
 class Minesweeper:
@@ -10,7 +9,7 @@ class Minesweeper:
         self.mines = [[False for _ in range(size)] for _ in range(size)]
         self.flags_remaining = mines_count
 
-     def display_field(self, reveal_all=False):
+    def display_field(self, reveal_all=False):
         print("  " + " ".join([chr(65 + i) for i in range(self.grid_size)]))
         for i in range(self.grid_size):
             print(chr(65 + i), end=" ")
@@ -27,7 +26,6 @@ class Minesweeper:
                 else:
                     print('\033[92m' + cell_value + '\033[0m', end=" ")  # Green for covered cells
             print()
-       
 
     def print_colored_number(self, number):
         colors = {
@@ -36,8 +34,9 @@ class Minesweeper:
             3: '\033[97m',  # White for 3
             4: '\033[94m',  # Blue for 4
             5: '\033[35m',  # Magenta for 5
+
         }
-        print(colors.get(number, '') + str(number) + '\033[0m', end=" ")
+        print(colors.get(number, '') + str(number) + '\033[0m', end=" ")
 
     def place_mines(self):
         mines_placed = 0
@@ -48,11 +47,10 @@ class Minesweeper:
                 self.mines[row][col] = True
                 mines_placed += 1
 
-
     def reveal_location(self, row, col):
         if self.mines[row][col]:
             print("Game Over! You hit a mine.")
-            self.field[row][col] = '\033[91m' + 'M' + '\033[0m'  
+            self.field[row][col] = '\033[91m' + 'M' + '\033[0m' 
             self.display_field(reveal_all=True)  
             exit(0)
 
@@ -67,7 +65,6 @@ class Minesweeper:
                             self.reveal_location(new_row, new_col)
             else:
                 self.field[row][col] = str(adjacent_mines)
-
 
     def place_flag(self, row, col):
         if self.field[row][col] == 'c':
@@ -93,7 +90,6 @@ class Minesweeper:
                         count += 1
         return count
 
-
     def play_game(self):
         self.place_mines()
 
@@ -112,7 +108,7 @@ class Minesweeper:
                 print("Invalid move. Please enter a valid move.")
                 continue
 
-        action = move[2]
+            action = move[2]
 
             if action == 'F':
                 self.place_flag(row, col)
@@ -124,10 +120,8 @@ class Minesweeper:
 
             if self.check_win():
                 print("Congratulations! You won!")
-                self.display_field(reveal_all=True)  # Reveal all mines
-                break
-        
-              
+                self.display_field(reveal_all=True)  
+                break
 
 if __name__ == "__main__":
     print("Choose the field:")
@@ -148,5 +142,3 @@ if __name__ == "__main__":
         exit(0)
 
     game.play_game()
-
-
