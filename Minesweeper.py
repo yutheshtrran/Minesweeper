@@ -8,13 +8,15 @@
 import random
 
 class Minesweeper:
+
+    # 21/ENG/131 - S.Yutheshtrran
     def __init__(self, size, mines_count):
         self.grid_size = size
         self.num_mines = mines_count
         self.field = [['c' for _ in range(size)] for _ in range(size)]
         self.mines = [[False for _ in range(size)] for _ in range(size)]
         self.flags_remaining = mines_count
-
+    # 21/ENG/131 - S.Yutheshtrran
     def display_field(self, reveal_all=False):
         print("  " + " ".join([chr(65 + i) for i in range(self.grid_size)]))
         for i in range(self.grid_size):
@@ -33,6 +35,7 @@ class Minesweeper:
                     print('\033[92m' + cell_value + '\033[0m', end=" ")  # Green for covered cells
             print()
 
+    # 21/ENG/132 - S.Geerthiga
     def print_colored_number(self, number):
         colors = {
             1: '\033[33m',  # Orange for 1
@@ -44,6 +47,7 @@ class Minesweeper:
         }
         print(colors.get(number, '') + str(number) + '\033[0m', end=" ")
 
+    # 21/ENG/009 - A.Harishan
     def place_mines(self):
         mines_placed = 0
         while mines_placed < self.num_mines:
@@ -52,7 +56,8 @@ class Minesweeper:
             if not self.mines[row][col]:
                 self.mines[row][col] = True
                 mines_placed += 1
-
+                
+    # 21/ENG/132 - S.Geerthiga
     def reveal_location(self, row, col):
         if self.mines[row][col]:
             print("Game Over! You hit a mine.")
@@ -71,14 +76,14 @@ class Minesweeper:
                             self.reveal_location(new_row, new_col)
             else:
                 self.field[row][col] = str(adjacent_mines)
-
+    # 21/ENG/131 - S.Yutheshtrran
     def place_flag(self, row, col):
         if self.field[row][col] == 'c':
             self.field[row][col] = 'F'
             self.flags_remaining -= 1
         else:
             print("Invalid move. You can only place a flag on a covered location.")
-
+    # 21/ENG/131 - S.Yutheshtrran
     def check_win(self):
         for i in range(self.grid_size):
             for j in range(self.grid_size):
@@ -86,6 +91,7 @@ class Minesweeper:
                     return False
         return True
 
+    # 21/ENG/009 - A.Harishan
     def count_adjacent_mines(self, row, col):
         count = 0
         for i in range(-1, 2):
@@ -96,6 +102,7 @@ class Minesweeper:
                         count += 1
         return count
 
+    # 21/ENG/009 - A.Harishan &&  21/ENG/132 - S.Geerthiga
     def play_game(self):
         self.place_mines()
 
@@ -114,6 +121,7 @@ class Minesweeper:
                 print("Invalid move. Please enter a valid move.")
                 continue
 
+
             action = move[2]
 
             if action == 'F':
@@ -129,6 +137,7 @@ class Minesweeper:
                 self.display_field(reveal_all=True)  
                 break
 
+# 21/ENG/131 - S.Yutheshtrran
 if __name__ == "__main__":
     print("Choose the field:")
     print("1. 10-by-10 with 12 mines")
