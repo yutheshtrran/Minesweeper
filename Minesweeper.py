@@ -94,7 +94,23 @@ class Minesweeper:
         return count
 
 
-    def play_game():
+    def play_game(self):
+        self.place_mines()
+
+        while True:
+            self.display_field()
+
+            move = input("Enter move (e.g., ABF for flag, ABR for reveal): ").upper()
+
+            if len(move) != 3:
+                print("Invalid move. Please enter a valid move.")
+                continue
+
+            row, col = ord(move[0]) - ord('A'), ord(move[1]) - ord('A')
+
+            if not (0 <= row < self.grid_size and 0 <= col < self.grid_size):
+                print("Invalid move. Please enter a valid move.")
+                continue
         
               
 
