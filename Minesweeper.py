@@ -83,7 +83,15 @@ class Minesweeper:
                     return False
         return True
 
-    def count_adjacent_mines():
+    def count_adjacent_mines(self, row, col):
+        count = 0
+        for i in range(-1, 2):
+            for j in range(-1, 2):
+                new_row, new_col = row + i, col + j
+                if 0 <= new_row < self.grid_size and 0 <= new_col < self.grid_size:
+                    if self.mines[new_row][new_col]:
+                        count += 1
+        return count
 
 
     def play_game():
